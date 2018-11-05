@@ -175,7 +175,7 @@ function MemberExpression(node, vars, reject, resolve)
         if (node.property.type === 'Identifier') {
             return void resolve(object[node.property.name]);
         }
-        walk(node.property, reject, function (property) {
+        walk(node.property, vars, reject, function (property) {
             resolve(object[property]);
         });
     });

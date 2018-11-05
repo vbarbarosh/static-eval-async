@@ -22,6 +22,11 @@ describe('static_eval_async', function () {
         assert(await exec('pow(2,4)', {pow}) === 16);
         assert(await exec('pow(2,4)+1', {pow}) === 17);
     });
+    it('should handle CallExpression', async function () {
+        assert(await exec('pow(2,4)', {pow}) === 16);
+        assert(await exec('getargs(2,4)[0]', {getargs: (...args) => args}) === 2);
+        assert(await exec('getargs(2,4)[1]', {getargs: (...args) => args}) === 4);
+    });
     it('should handle CallExpression with async functions', async function () {
         assert(await exec('pow_async(2,4)', {pow_async}) === 16);
         assert(await exec('pow_async(2,4)+1', {pow_async}) === 17);
